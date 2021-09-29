@@ -1,0 +1,31 @@
+﻿@model firstapproch.Models.Student
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@Html.Raw(ViewBag.InsertMessage)
+<form id="myform">
+    <input type="text" placeholder="name" value="name" name="name"/>
+    <input type="text" placeholder="classes" value="classes" name="classes"/>
+    <input type="text" placeholder="marks" value="marks" name="marks"/>
+<input type="button" value="submit" id="submit"/>
+
+</form>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            var data = $("#myform").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/Home/Create",
+                data: data,
+                success: function (response) {
+                    alert("you done")
+                }
+            })
+        })
+        
+    })
+</script>
